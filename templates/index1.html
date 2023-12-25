@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Live streaming</title>
+</head>
+
+<body>
+    <h1>Live streaming</h1>
+    <div>
+        <img src="{{ url_for('video_feed') }}" width="50%" />
+    </div>
+    <br>
+    <button onclick="startTest()">Start Test</button>
+    <button onclick="stopTest()">Stop Test</button>
+
+    {% if results_available %}
+        <br>
+        <a href="{{ url_for('download_results') }}" download="emotion_results.txt">Download Results</a>
+    {% endif %}
+
+    <script>
+        function startTest() {
+            fetch("{{ url_for('start_test') }}")
+                .then(response => response.text())
+                .then(message => alert(message));
+        }
+
+        function stopTest() {
+            fetch("{{ url_for('stop_test') }}")
+                .then(response => response.text())
+                .then(message => {
+                    alert(message);
+                    location.reload();  // Refresh the page to show/hide the download button
+                });
+        }
+    </script>
+</body>
+
+</html>

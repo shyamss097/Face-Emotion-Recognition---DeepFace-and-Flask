@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotion Detection Test</title>
+</head>
+<body>
+    <h1>Emotion Detection Test</h1>
+    
+    <button onclick="startTest()">Start Test</button>
+    <button onclick="stopTest()">Stop Test</button>
+    <br>
+    <img id="emotionImage" src="{{ url_for('video_feed') }}" alt="Emotion Detection">
+
+    <br>
+    <a href="{{ url_for('trigger_download_results') }}" download="emotion_results.txt">Download Results</a>
+
+    <script>
+        function startTest() {
+            fetch("{{ url_for('start_test') }}")
+                .then(response => response.text())
+                .then(message => alert(message));
+        }
+
+        function stopTest() {
+            fetch("{{ url_for('stop_test') }}")
+                .then(response => response.text())
+                .then(message => alert(message));
+        }
+
+        // Reload image every 1 second
+        setInterval(() => {
+            document.getElementById('emotionImage').src = "{{ url_for('video_feed') }}";
+        }, 1000);
+    </script>
+</body>
+</html>
