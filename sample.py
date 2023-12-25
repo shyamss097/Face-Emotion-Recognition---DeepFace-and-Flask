@@ -41,13 +41,15 @@ def generate_frames():
             yield (b'--frame\r\n'
                    b'Content-Type: image/jpeg\r\n\r\n' + frame_bytes + b'\r\n')
 
-def download_results():
-    return send_file(timestamp_file_path, as_attachment=True, mimetype='text/plain', download_name="emotion_results.txt")
+@app.route('/download_file')
+def download_file():
+    file_path = "emotion_timestamps.txt"  # File path in the current working directory
+    return send_file(file_path, as_attachment=True)
 
 
 @app.route('/')
 def index():
-    return render_template('index.html', results_available=results_available)
+    return render_template('index.html')
 
 @app.route('/video_feed')
 def video_feed():
@@ -70,11 +72,8 @@ def stop_test():
         camera.release()  # Release the camera
 
     cv2.destroyAllWindows()
-    return download_results()
+    return download_file()
 
-@app.route('/download_results')
-def trigger_download_results():
-    return download_results()
 
 if __name__ == "__main__":
     app.run(debug=True)
