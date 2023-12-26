@@ -1,14 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Emotion Detection Test</title>
+
+    <style>
+        body {
+            background-color: #222;
+            color: #fff;
+            font-family: sans-serif;
+            text-align: center;
+        }
+
+        header {
+            background-color: #333;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 40px;
+        }
+
+        p {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .controls {
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .video-container {
+            border: 10px solid #007bff;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        #emotionImage {
+            width: 70%;
+            height: auto;
+        }
+
+        .results {
+            margin-top: 20px;
+        }
+
+        a {
+            background-color: #007bff;
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+    </style>
 </head>
+
 <body>
     <h1>Emotion Detection Test</h1>
-    
+
     <button onclick="startTest()">Start Test</button>
     <button onclick="stopTest()">Stop Test</button>
     <br>
@@ -21,24 +90,20 @@
         function startTest() {
             fetch("{{ url_for('start_test') }}")
                 .then(response => response.text())
-                .then(message => {
-                    alert(message);
-                    updateImageSource();
-                });
+                .then(message => alert(message));
         }
 
         function stopTest() {
             fetch("{{ url_for('stop_test') }}")
                 .then(response => response.text())
-                .then(message => {
-                    alert(message);
-                    updateImageSource();
-                });
+                .then(message => alert(message));
         }
 
-        function updateImageSource() {
+        // Reload image every 1 second
+        setInterval(() => {
             document.getElementById('emotionImage').src = "{{ url_for('video_feed') }}";
-        }
+        }, 1000);
     </script>
 </body>
+
 </html>
