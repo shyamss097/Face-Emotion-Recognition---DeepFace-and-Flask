@@ -17,7 +17,7 @@ This is a simple Flask application for real-time emotion detection using a webca
 1. **Clone the Repository:**
 
     ```bash
-    git clone https://github.com/your-username/emotion-detection-flask.git
+    git clone https://github.com/shyamss097/Face-Emotion-Recognition---DeepFace-and-Flask
     ```
 
 2. **Navigate to the Project Directory:**
