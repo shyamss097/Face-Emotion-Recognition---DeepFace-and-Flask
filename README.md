@@ -10,7 +10,7 @@ This is a simple Flask application for real-time emotion detection using a webca
 - Flask
 - OpenCV
 - DeepFace
-- Other dependencies (specified in `requirements.txt`)
+
 
 ## Setup
 
