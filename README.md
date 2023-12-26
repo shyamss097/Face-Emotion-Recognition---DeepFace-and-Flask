@@ -26,13 +26,8 @@ This is a simple Flask application for real-time emotion detection using a webca
     cd emotion-detection-flask
     ```
 
-3. **Install Dependencies:**
 
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-4. **Run the Flask Application:**
+3. **Run the Flask Application:**
 
     ```bash
     python app.py
@@ -40,12 +35,13 @@ This is a simple Flask application for real-time emotion detection using a webca
 
     The application will be running at [http://localhost:5000/](http://localhost:5000/). Open this URL in your web browser.
 
-5. **Usage:**
+4. **Usage:**
 
     - Click on "Start Test" to initiate emotion detection.
     - Click on "Stop Test" to end the test and download the results.
+    
 
-6. **Customization:**
+5. **Customization:**
 
     - Adjust the Flask app configuration in `app.py` if needed.
     - Modify the HTML templates in the `templates` folder for UI changes.
